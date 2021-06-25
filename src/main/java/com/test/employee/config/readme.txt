@@ -1,0 +1,1 @@
+All project configuration classes should be included in this package (JavaConfig).
