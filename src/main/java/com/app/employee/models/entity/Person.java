@@ -27,7 +27,7 @@ public class Person implements Serializable {
 	String name;
 	String lastName;
 	String address;
-	String cellPhone;
+	String cellphone;
 	String cityName;
 
 	/**

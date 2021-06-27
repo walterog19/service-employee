@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "persons")
+@Table(name = "positions")
 public class Position implements Serializable {
 
 	@Id

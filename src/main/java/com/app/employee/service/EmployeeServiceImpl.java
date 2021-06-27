@@ -21,7 +21,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Override
 	@Transactional(readOnly = true)
 	public Employee getEmployeeById(long id) {
-		
+
 		if (log.isInfoEnabled()) {
 			log.info("getEmployeeById : " + id);
 		}
@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 			if (log.isWarnEnabled()) {
 				log.error("Error employee without person.");
 			}
-			// TODO It should create a custom exception, I  was not made by time
+			// TODO It should create a custom exception, I was not made by time
 			throw new Exception("Error employee without person.");
 		}
 		employeeRepository.saveAndFlush(employee);
@@ -52,30 +52,45 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
-	public void update(Employee employee)  throws Exception {
+	public void update(Employee employee) throws Exception {
 		if (employee.getId() == null) {
 			if (log.isWarnEnabled()) {
 				log.error("Error employee without id.");
 			}
-			// TODO It should create a custom exception, I  was not made by time
+			// TODO It should create a custom exception, I was not made by time
 			throw new Exception("Error employee without id.");
 		}
-		
+
 		employeeRepository.saveAndFlush(employee);
 
 	}
 
 	@Override
 	public void delete(long id) {
-		
+
 		employeeRepository.deleteById(id);
 
 	}
 
 	@Override
-	public boolean isEmployeeExist(long id) {		
-		
+	public boolean isEmployeeExist(long id) {
+
 		return employeeRepository.existsById(id);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByName(String name) {
+		return employeeRepository.findListByName(name);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByPosition(String position) {
+		return employeeRepository.findListByPosition(position);
+	}
+
+	@Override
+	public List<Employee> getEmployeesByPositionAndName(String position, String name) {
+		return employeeRepository.findListByPositionAndName(position, name);
 	}
 
 }

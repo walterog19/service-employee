@@ -11,7 +11,7 @@ public interface IPositionService {
 	
 	List<Position> getPositions();
 
-	void insert(Position position) throws Exception;
+	Position insert(Position position) throws Exception;
 
 	void update(Position position)throws Exception;
 

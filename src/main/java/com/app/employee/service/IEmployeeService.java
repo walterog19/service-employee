@@ -9,6 +9,12 @@ public interface IEmployeeService {
 	Employee getEmployeeById(long id);
 	
 	List<Employee> getEmployees();
+	
+	List<Employee> getEmployeesByName(String name);
+	
+	List<Employee> getEmployeesByPosition(String position);
+	
+	List<Employee> getEmployeesByPositionAndName(String name, String position);
 
 	void insert(Employee Employee)  throws Exception;
 

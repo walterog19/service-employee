@@ -11,9 +11,9 @@ public interface IPersonService {
 	
 	List<Person> getPersons();
 
-	void insert(Person person)  throws Exception;
+	Person insert(Person person)  throws Exception;
 
-	void update(Person person) throws Exception;
+	Person update(Person person) throws Exception;
 
     void delete(long id);
 

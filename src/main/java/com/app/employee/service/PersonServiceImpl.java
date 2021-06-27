@@ -41,13 +41,13 @@ public class PersonServiceImpl implements IPersonService {
 	}
 
 	@Override
-	public void insert(Person person) throws Exception {
+	public Person insert(Person person) throws Exception {
 
-		personeRepository.saveAndFlush(person);
+		return personeRepository.saveAndFlush(person);
 	}
 
 	@Override
-	public void update(Person person) throws Exception {
+	public Person update(Person person) throws Exception {
 
 		if (person.getId() == null) {
 			if (log.isWarnEnabled()) {
@@ -57,7 +57,7 @@ public class PersonServiceImpl implements IPersonService {
 			throw new Exception("Error person without id.");
 		}
 
-		personeRepository.saveAndFlush(person);
+		return personeRepository.saveAndFlush(person);
 
 	}
 

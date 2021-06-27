@@ -38,9 +38,9 @@ public class PositionServiceImpl implements IPositionService {
 	}
 
 	@Override
-	public void insert(Position position) throws Exception {
+	public Position insert(Position position) throws Exception {
 		
-		positionRepository.saveAndFlush(position);
+		return positionRepository.saveAndFlush(position);
 		
 	}
 
