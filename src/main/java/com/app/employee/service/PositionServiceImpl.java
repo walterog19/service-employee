@@ -1,11 +1,18 @@
 package com.app.employee.service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.app.employee.models.dto.PositionResponseDTO;
+import com.app.employee.models.entity.Employee;
 import com.app.employee.models.entity.Position;
+import com.app.employee.models.repository.EmployeeRepository;
 import com.app.employee.models.repository.PositionRepository;
+import com.app.employee.util.UtilMapEmployee;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -17,6 +24,8 @@ import lombok.extern.log4j.Log4j2;
 public class PositionServiceImpl implements IPositionService {
 	@Autowired
 	private PositionRepository positionRepository;
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@Override
 	@Transactional(readOnly = true)
@@ -35,6 +44,25 @@ public class PositionServiceImpl implements IPositionService {
 			log.info("getPositions");
 		}
 		return positionRepository.findAll();
+	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<PositionResponseDTO> getPositionsReport(){
+		List<Position> positions = positionRepository.findAll();
+		List<PositionResponseDTO> result = positions.stream().map(val -> {
+			PositionResponseDTO postitionResponse = new PositionResponseDTO();
+			postitionResponse.setId(val.getId());
+			postitionResponse.setName(val.getName());
+			List<Employee> listEmployee =  employeeRepository.findListByIdPositionOrderSalaryDesc(val.getId());
+			postitionResponse.setEmployees(UtilMapEmployee.employeeToEmployeeDTO(listEmployee));
+			return postitionResponse;
+			 
+		 }).collect(Collectors.toList());	
+		
+		
+		return result;
+		
 	}
 
 	@Override

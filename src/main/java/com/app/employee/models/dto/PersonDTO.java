@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 public class PersonDTO implements Serializable {
 
 
-	private Long id;
-	String name;
-	String lastName;
-	String address;
-	String cellPhone;
-	String cityName;
+	
+	private String name;
+	private String lastName;
+	private String address;
+	private String cellphone;
+	private String cityName;
 
 	/**
 	 * 

@@ -18,6 +18,8 @@ import com.app.employee.service.IPersonService;
 import com.app.employee.service.IPositionService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+
+import com.app.employee.models.dto.PositionResponseDTO;
 import com.app.employee.models.entity.Employee;
 import com.app.employee.models.entity.Person;
 import com.app.employee.models.entity.Position;
@@ -149,7 +151,7 @@ public class EmployeeController {
 		if (employee.getPerson() != null) {		
 			employee.getPerson().setId(currentEmployee.getPerson().getId());
 			Person personModify  = personService.update(employee.getPerson());
-			currentEmployee.setPerson(employee.getPerson());
+			currentEmployee.setPerson(personModify);
 		}
 		if (employee.getPosition() != null)	{	
 		currentEmployee.setPosition(employee.getPosition());
@@ -180,9 +182,9 @@ public class EmployeeController {
 	}
 
 	@GetMapping(value = "/positions", headers = "Accept=application/json")
-	public ResponseEntity<List<Position>> listPositions() {
+	public ResponseEntity<List<PositionResponseDTO>> listPositions() {
 
-		List<Position> positions = positionService.getPositions();
+		List<PositionResponseDTO> positions = positionService.getPositionsReport();
 
 		if (positions.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);

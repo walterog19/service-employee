@@ -1,6 +1,6 @@
 package com.app.employee.models.dto;
 
-import java.io.Serializable;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,16 +11,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class EmployeeDTO implements Serializable {
-
+public class PositionResponseDTO {
 	private Long id;
-	private Double salary;
-	private PersonDTO person;
+	private String name;
+	List<EmployeeDTO> employees;
 	
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = -5036198392773338228L;
+	
 
 }

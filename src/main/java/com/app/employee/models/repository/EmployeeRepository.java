@@ -20,5 +20,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>{
 
 	@Query("select e from Employee e where e.person.name=:paramName and e.position.name=:parNamePosition  ")
 	List<Employee> findListByPositionAndName(@Param("parNamePosition") String parNamePosition, @Param("paramName") String paramName);
-
+	
+	
+	@Query("select e from Employee e where  e.position.id=:parIdPosition order by e.salary desc  ")
+	List<Employee> findListByIdPositionOrderSalaryDesc(@Param("parIdPosition") Long parIdPosition);
+	
 }
